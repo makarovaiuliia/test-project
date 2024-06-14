@@ -17,13 +17,6 @@ export interface UserListResponse extends ServerResponse<User[]> {
     total_pages: number;
 }
 
-export interface UserResponse extends ServerResponse<User> {
-    support: {
-        url: string;
-        text: string;
-    };
-}
-
 export interface SignInData {
     email: string;
     password: string;

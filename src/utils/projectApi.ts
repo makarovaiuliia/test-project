@@ -1,6 +1,15 @@
-import { SignInData, SignInResponse, SignUpResponse, UserInfo, UserListResponse, UserResponse } from '@/types/types';
+import {
+    ServerResponse,
+    SignInData,
+    SignInResponse,
+    SignUpResponse,
+    User,
+    UserInfo,
+    UserListResponse,
+} from '@/types/types';
 
 const URL = import.meta.env.VITE_URL;
+console.log(URL);
 
 const checkResponse = <T>(res: Response): Promise<T> =>
     res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
@@ -23,7 +32,7 @@ export const getUserById = async (id: string) => {
         },
     });
 
-    const data = checkResponse<UserResponse>(response);
+    const data = checkResponse<ServerResponse<User>>(response);
     return data;
 };
 
