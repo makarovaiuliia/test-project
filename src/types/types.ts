@@ -1,3 +1,5 @@
+// api data
+
 export interface User {
     id: number;
     email: string;
@@ -34,3 +36,28 @@ export interface SignInResponse {
 export interface SignUpResponse extends SignInResponse {
     id: string;
 }
+
+// form types
+
+export type FormData = {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+};
+
+export type ValidFieldNames = keyof FormData;
+
+import { z, ZodType } from 'zod';
+
+export const SignUpSchema: ZodType<FormData> = z
+    .object({
+        name: z.string(),
+        email: z.string().email(),
+        password: z.string().min(8, { message: 'Password is too short' }).max(20, { message: 'Password is too long' }),
+        confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: 'Passwords do not match',
+        path: ['confirmPassword'],
+    });

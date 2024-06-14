@@ -74,7 +74,7 @@ export const updateUser = async (id: string, body: UserInfo) => {
     return data;
 };
 
-export const signUpUser = async (body: SignInData) => {
+export const signUpUserApi = async (body: SignInData) => {
     const response = await fetch(`${URL}/register`, {
         method: 'POST',
         headers: {
