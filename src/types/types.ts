@@ -46,7 +46,10 @@ export type SignUpFormData = {
     confirmPassword: string;
 };
 
-export type ValidFieldNamesSignUp = keyof SignUpFormData;
+export type SignInFormData = {
+    email: string;
+    password: string;
+};
 
 import { z, ZodType } from 'zod';
 
@@ -61,3 +64,8 @@ export const SignUpSchema: ZodType<SignUpFormData> = z
         message: 'Passwords do not match',
         path: ['confirmPassword'],
     });
+
+export const SignInSchema: ZodType<SignInFormData> = z.object({
+    email: z.string().email({ message: 'Invalid email address' }),
+    password: z.string().min(6, { message: 'Password is too short' }).max(20, { message: 'Password is too long' }),
+});

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import type { RootState } from './store';
 import { SignInData, User } from '@/types/types';
-import { getUserListApi, signUpUserApi } from '@/utils/projectApi';
+import { getUserListApi, signInUserApi, signUpUserApi } from '@/utils/projectApi';
 import { saveToken } from '@/utils/utils';
 
 export const getUserList = createAsyncThunk('users/get', async () => {
@@ -12,6 +12,12 @@ export const getUserList = createAsyncThunk('users/get', async () => {
 
 export const signUpUser = createAsyncThunk('user/signUp', async (data: SignInData) => {
     const response = await signUpUserApi(data);
+    saveToken(response.token);
+    return response;
+});
+
+export const signInUser = createAsyncThunk('user/signIn', async (data: SignInData) => {
+    const response = await signInUserApi(data);
     saveToken(response.token);
     return response;
 });
@@ -42,8 +48,8 @@ const userSlice = createSlice({
             .addCase(signUpUser.fulfilled, (state) => {
                 state.isAuth = true;
             })
-            .addCase(signUpUser.rejected, (state) => {
-                state.error = 'Something went wrong';
+            .addCase(signInUser.fulfilled, (state) => {
+                state.isAuth = true;
             });
     },
 });

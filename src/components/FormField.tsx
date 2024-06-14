@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { FormFieldProps } from '@/types/props';
 import passwordIcon from '../../public/password.svg';
 
-const FormField = ({ type, placeholder, name, register, error, valueAsNumber, label }: FormFieldProps) => {
+const FormField = <T extends Record<string, string>>({
+    type,
+    placeholder,
+    name,
+    register,
+    error,
+    valueAsNumber,
+    label,
+}: FormFieldProps<T>) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const togglePasswordVisibility = () => {
         setPasswordShown((prevState) => !prevState);
