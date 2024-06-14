@@ -56,5 +56,6 @@ const userSlice = createSlice({
 
 export const getUserSelector = (state: RootState) => state.user.userData;
 export const getErrorSelector = (state: RootState) => state.user.error;
+export const getIsAuth = (state: RootState) => state.user.isAuth;
 
 export default userSlice.reducer;
