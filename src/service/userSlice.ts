@@ -26,14 +26,12 @@ interface InitialState {
     userData: User | undefined;
     userList: User[];
     isAuth: boolean;
-    error: string;
 }
 
 const initialState: InitialState = {
     userData: undefined,
     userList: [],
     isAuth: false,
-    error: '',
 };
 
 const userSlice = createSlice({
@@ -59,7 +57,7 @@ const userSlice = createSlice({
 });
 
 export const getUserSelector = (state: RootState) => state.user.userData;
-export const getErrorSelector = (state: RootState) => state.user.error;
+export const getUserListSelector = (state: RootState) => state.user.userList;
 export const getIsAuth = (state: RootState) => state.user.isAuth;
 
 export const { setIsAuth } = userSlice.actions;

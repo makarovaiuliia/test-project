@@ -9,7 +9,6 @@ import {
 } from '@/types/types';
 
 const URL = import.meta.env.VITE_URL;
-console.log(URL);
 
 const checkResponse = <T>(res: Response): Promise<T> =>
     res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
