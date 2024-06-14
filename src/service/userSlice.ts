@@ -39,7 +39,11 @@ const initialState: InitialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setIsAuth(state) {
+            state.isAuth = true;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getUserList.fulfilled, (state, action) => {
@@ -56,5 +60,8 @@ const userSlice = createSlice({
 
 export const getUserSelector = (state: RootState) => state.user.userData;
 export const getErrorSelector = (state: RootState) => state.user.error;
+export const getIsAuth = (state: RootState) => state.user.isAuth;
+
+export const { setIsAuth } = userSlice.actions;
 
 export default userSlice.reducer;
