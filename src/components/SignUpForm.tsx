@@ -37,7 +37,7 @@ function SignUpForm() {
             className="md:w-500px flex flex-col gap-6 p-4 shadow-md rounded-2xl w-100dvw"
         >
             <div className="flex flex-col gap-4">
-                <h1>Регистрация</h1>
+                <h1 className="text-2xl">Регистрация</h1>
                 <FormField
                     type="text"
                     placeholder="Артур"
