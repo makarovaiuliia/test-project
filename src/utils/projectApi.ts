@@ -87,7 +87,7 @@ export const signUpUserApi = async (body: SignInData) => {
     return data;
 };
 
-export const signInUser = async (body: SignInData) => {
+export const signInUserApi = async (body: SignInData) => {
     const response = await fetch(`${URL}/login`, {
         method: 'POST',
         headers: {

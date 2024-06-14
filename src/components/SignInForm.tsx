@@ -1,24 +1,24 @@
 import { useForm } from 'react-hook-form';
 import FormField from './FormField';
-import { SignUpFormData, SignUpSchema } from '@/types/types';
+import { SignInFormData, SignInSchema } from '@/types/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from '@/service/store';
-import { signUpUser } from '@/service/userSlice';
+import { signInUser } from '@/service/userSlice';
 
-function SignUpForm() {
+function SignInForm() {
     const dispatch = useDispatch();
     const {
         register,
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignUpFormData>({
-        resolver: zodResolver(SignUpSchema),
+    } = useForm<SignInFormData>({
+        resolver: zodResolver(SignInSchema),
         mode: 'onChange',
     });
 
-    const onSubmit = async (data: SignUpFormData) => {
-        await dispatch(signUpUser(data));
+    const onSubmit = async (data: SignInFormData) => {
+        await dispatch(signInUser(data));
         reset();
     };
 
@@ -28,16 +28,8 @@ function SignUpForm() {
             className="md:w-500px flex flex-col gap-6 p-4 shadow-md rounded-2xl w-100dvw"
         >
             <div className="flex flex-col gap-4">
-                <h1 className="text-2xl">Регистрация</h1>
-                <FormField<SignUpFormData>
-                    type="text"
-                    placeholder="Артур"
-                    name="name"
-                    register={register}
-                    error={errors.name}
-                    label="Имя"
-                />
-                <FormField<SignUpFormData>
+                <h1 className="text-2xl">Вход</h1>
+                <FormField<SignInFormData>
                     type="email"
                     placeholder="example@mail.ru"
                     label="Электронная почта"
@@ -45,7 +37,7 @@ function SignUpForm() {
                     register={register}
                     error={errors.email}
                 />
-                <FormField<SignUpFormData>
+                <FormField<SignInFormData>
                     type="password"
                     label="Пароль"
                     placeholder="******"
@@ -53,21 +45,13 @@ function SignUpForm() {
                     register={register}
                     error={errors.password}
                 />
-                <FormField<SignUpFormData>
-                    type="password"
-                    label="Подтвердите пароль"
-                    placeholder="******"
-                    name="confirmPassword"
-                    register={register}
-                    error={errors.confirmPassword}
-                />
             </div>
 
             <button type="submit" className="px-2 py-4 bg-violet text-white rounded-lg">
-                Зарегистрироваться
+                Войти
             </button>
         </form>
     );
 }
 
-export default SignUpForm;
+export default SignInForm;
