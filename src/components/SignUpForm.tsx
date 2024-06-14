@@ -32,38 +32,51 @@ function SignUpForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid col-auto">
-                <h1 className="text-3xl font-bold mb-4">Регистрация</h1>
-                <FormField type="text" placeholder="Имя" name="name" register={register} error={errors.name} />
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="md:w-500px flex flex-col gap-6 p-4 shadow-md rounded-2xl w-100dvw"
+        >
+            <div className="flex flex-col gap-4">
+                <h1>Регистрация</h1>
+                <FormField
+                    type="text"
+                    placeholder="Артур"
+                    name="name"
+                    register={register}
+                    error={errors.name}
+                    label="Имя"
+                />
                 <FormField
                     type="email"
-                    placeholder="Электронная почта"
+                    placeholder="example@mail.ru"
+                    label="Электронная почта"
                     name="email"
                     register={register}
                     error={errors.email}
                 />
                 <FormField
                     type="password"
-                    placeholder="Пароль"
+                    label="Пароль"
+                    placeholder="******"
                     name="password"
                     register={register}
                     error={errors.password}
                 />
                 <FormField
                     type="password"
-                    placeholder="Подтвердите пароль"
+                    label="Подтвердите пароль"
+                    placeholder="******"
                     name="confirmPassword"
                     register={register}
                     error={errors.confirmPassword}
                 />
-
-                <button type="submit" className="submit-button">
-                    Submit
-                </button>
-
-                <span>{error}</span>
             </div>
+
+            <button type="submit" className="px-2 py-4 bg-violet text-white rounded-lg">
+                Зарегистрироваться
+            </button>
+
+            <span>{error}</span>
         </form>
     );
 }

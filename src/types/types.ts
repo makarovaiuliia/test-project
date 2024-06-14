@@ -46,7 +46,7 @@ export type SignUpFormData = {
     confirmPassword: string;
 };
 
-export type ValidFieldNamesSignUp = keyof FormData;
+export type ValidFieldNamesSignUp = keyof SignUpFormData;
 
 import { z, ZodType } from 'zod';
 

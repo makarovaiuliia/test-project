@@ -1,11 +1,12 @@
 import { FieldError, UseFormRegister } from 'react-hook-form';
-import { FormData, ValidFieldNames } from './types';
+import { SignUpFormData, ValidFieldNamesSignUp } from '@/types/types';
 
 export type FormFieldProps = {
+    label: string;
     type: string;
     placeholder: string;
-    name: ValidFieldNames;
-    register: UseFormRegister<FormData>;
+    name: ValidFieldNamesSignUp;
+    register: UseFormRegister<SignUpFormData>;
     error: FieldError | undefined;
     valueAsNumber?: boolean;
 };
