@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import FormField from './FormField';
-import { FormData, SignUpSchema } from '@/types/types';
+import { SignUpFormData, SignUpSchema } from '@/types/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from '@/service/store';
 import { signUpUser } from '@/service/userSlice';
@@ -12,13 +12,14 @@ function SignUpForm() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>({
+    } = useForm<SignUpFormData>({
         resolver: zodResolver(SignUpSchema),
+        mode: 'onChange',
     });
 
     const [error, setError] = useState<string | undefined>(undefined);
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: SignUpFormData) => {
         try {
             await dispatch(signUpUser(data));
         } catch (error) {
@@ -56,9 +57,11 @@ function SignUpForm() {
                     register={register}
                     error={errors.confirmPassword}
                 />
+
                 <button type="submit" className="submit-button">
                     Submit
                 </button>
+
                 <span>{error}</span>
             </div>
         </form>

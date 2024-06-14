@@ -39,21 +39,21 @@ export interface SignUpResponse extends SignInResponse {
 
 // form types
 
-export type FormData = {
+export type SignUpFormData = {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
 };
 
-export type ValidFieldNames = keyof FormData;
+export type ValidFieldNamesSignUp = keyof FormData;
 
 import { z, ZodType } from 'zod';
 
-export const SignUpSchema: ZodType<FormData> = z
+export const SignUpSchema: ZodType<SignUpFormData> = z
     .object({
-        name: z.string(),
-        email: z.string().email(),
+        name: z.string().min(1, { message: 'Name is required' }),
+        email: z.string().email({ message: 'Invalid email address' }),
         password: z.string().min(8, { message: 'Password is too short' }).max(20, { message: 'Password is too long' }),
         confirmPassword: z.string(),
     })
