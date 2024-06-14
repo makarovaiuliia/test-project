@@ -6,10 +6,38 @@ export interface User {
     avatar: string;
 }
 
-export interface UserListResponse {
+export interface ServerResponse<T> {
+    data: T;
+}
+
+export interface UserListResponse extends ServerResponse<User[]> {
     page: number;
     per_page: number;
     total: number;
     total_pages: number;
-    data: User;
+}
+
+export interface UserResponse extends ServerResponse<User> {
+    support: {
+        url: string;
+        text: string;
+    };
+}
+
+export interface SignInData {
+    email: string;
+    password: string;
+}
+
+export interface UserInfo {
+    name: string;
+    job: string;
+}
+
+export interface SignInResponse {
+    token: string;
+}
+
+export interface SignUpResponse extends SignInResponse {
+    id: string;
 }
