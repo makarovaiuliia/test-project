@@ -1,14 +1,26 @@
 import CatalogPage from '@/pages/CatalogPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/signUpPage';
+import { useDispatch } from '@/service/store';
+import { setIsAuth } from '@/service/userSlice';
 import ProtectedRoute from '@/utils/protectedRoute';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            dispatch(setIsAuth());
+        }
+    });
+
     return (
         <Routes>
             <Route
-                path="catalog"
+                path="/"
                 element={
                     <ProtectedRoute>
                         <CatalogPage />
