@@ -26,7 +26,7 @@ export default {
                 '3xl': '4rem',
                 '4xl': '0.63rem',
             },
-            height: {
+            minHight: {
                 '100dvh': '100dvh',
             },
         },

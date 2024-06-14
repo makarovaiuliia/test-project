@@ -4,12 +4,12 @@ import { SignUpFormData, SignUpSchema } from '@/types/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDispatch } from '@/service/store';
 import { signUpUser } from '@/service/userSlice';
-import { useState } from 'react';
 
 function SignUpForm() {
     const dispatch = useDispatch();
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm<SignUpFormData>({
@@ -17,18 +17,9 @@ function SignUpForm() {
         mode: 'onChange',
     });
 
-    const [error, setError] = useState<string | undefined>(undefined);
-
     const onSubmit = async (data: SignUpFormData) => {
-        try {
-            await dispatch(signUpUser(data));
-        } catch (error) {
-            if (error) {
-                if (typeof error === 'object' && 'error' in error) {
-                    if (typeof error.error === 'string') setError(error.error);
-                }
-            }
-        }
+        await dispatch(signUpUser(data));
+        reset();
     };
 
     return (
@@ -75,8 +66,6 @@ function SignUpForm() {
             <button type="submit" className="px-2 py-4 bg-violet text-white rounded-lg">
                 Зарегистрироваться
             </button>
-
-            <span>{error}</span>
         </form>
     );
 }

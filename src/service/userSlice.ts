@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { SignInData, User } from '@/types/types';
 import { getUserListApi, signUpUserApi } from '@/utils/projectApi';
+import { saveToken } from '@/utils/utils';
 
 export const getUserList = createAsyncThunk('users/get', async () => {
     const response = await getUserListApi();
@@ -11,6 +12,7 @@ export const getUserList = createAsyncThunk('users/get', async () => {
 
 export const signUpUser = createAsyncThunk('user/signUp', async (data: SignInData) => {
     const response = await signUpUserApi(data);
+    saveToken(response.token);
     return response;
 });
 
