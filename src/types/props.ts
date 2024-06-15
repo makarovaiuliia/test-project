@@ -14,3 +14,16 @@ export interface FormFieldProps<T extends FieldValues> {
 export interface CatalogCardProps {
     user: User;
 }
+
+export interface ContactProps {
+    href: string;
+    icon: string;
+    contactInfo: string;
+    contactType: string;
+}
+
+export interface HeaderButtonProps {
+    styles?: string;
+    title: string;
+    handler: () => void;
+}

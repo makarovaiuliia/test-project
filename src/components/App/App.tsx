@@ -1,4 +1,5 @@
 import CatalogPage from '@/pages/CatalogPage';
+import DetailedPage from '@/pages/DetailedPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/signUpPage';
 import { useDispatch } from '@/service/store';
@@ -13,7 +14,7 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            dispatch(setIsAuth());
+            dispatch(setIsAuth(true));
         }
         dispatch(getUserList());
     }, [dispatch]);
@@ -25,6 +26,14 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <CatalogPage />
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/catalog/:id"
+                element={
+                    <ProtectedRoute>
+                        <DetailedPage />
                     </ProtectedRoute>
                 }
             />
