@@ -3,7 +3,7 @@ import DetailedPage from '@/pages/DetailedPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/signUpPage';
 import { useDispatch } from '@/service/store';
-import { getUserList, setIsAuth } from '@/service/userSlice';
+import { getUserList, setIsAuth, setLikes } from '@/service/userSlice';
 import ProtectedRoute from '@/utils/protectedRoute';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -13,6 +13,10 @@ function App() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        const likes = localStorage.getItem('likes');
+        if (likes) {
+            dispatch(setLikes(JSON.parse(likes)));
+        }
         if (token) {
             dispatch(setIsAuth(true));
         }
