@@ -9,6 +9,9 @@ Kickflip is an e-commerce platform focused on sneakers, allowing users to browse
 ## Technology Stack
 
 - **Frontend**: React + TypeScript
+- **Styles**: Tailwind CSS
+- **Forms**: React Hook Form + ZOD
+- **State management**: Redux Toolkit
 - **Bundling**: Vite
 - **Backend**: [Reqres](https://reqres.in/)
 
