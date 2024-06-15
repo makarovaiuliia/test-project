@@ -5,17 +5,20 @@ import SignUpPage from '@/pages/signUpPage';
 import { useDispatch } from '@/service/store';
 import { getUserList, setIsAuth, setLikes } from '@/service/userSlice';
 import ProtectedRoute from '@/utils/protectedRoute';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Loader from './Loader';
 
 function App() {
     const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         const likes = localStorage.getItem('likes');
 
         const fetchData = async () => {
+            setIsLoading(true);
             await dispatch(getUserList(1));
             if (likes) {
                 dispatch(setLikes(JSON.parse(likes)));
@@ -23,10 +26,14 @@ function App() {
             if (token) {
                 dispatch(setIsAuth(true));
             }
+            setIsLoading(false);
         };
         fetchData();
     }, [dispatch]);
 
+    if (isLoading) {
+        return <Loader />;
+    }
     return (
         <Routes>
             <Route
