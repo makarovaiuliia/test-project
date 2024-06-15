@@ -5,8 +5,8 @@ import { SignInData, User } from '@/types/types';
 import { getUserListApi, signInUserApi, signUpUserApi } from '@/utils/projectApi';
 import { saveToken } from '@/utils/utils';
 
-export const getUserList = createAsyncThunk('users/get', async () => {
-    const response = await getUserListApi();
+export const getUserList = createAsyncThunk('users/get', async (page: number) => {
+    const response = await getUserListApi(page);
     return response;
 });
 
@@ -26,12 +26,14 @@ interface InitialState {
     userData: User | undefined;
     userList: User[];
     isAuth: boolean;
+    total: number;
 }
 
 const initialState: InitialState = {
     userData: undefined,
     userList: [],
     isAuth: false,
+    total: 0,
 };
 
 const userSlice = createSlice({
@@ -45,7 +47,12 @@ const userSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getUserList.fulfilled, (state, action) => {
-                state.userList = action.payload.data;
+                state.total = action.payload.total;
+                if (action.payload.page === 1) {
+                    state.userList = action.payload.data;
+                } else {
+                    state.userList = [...state.userList, ...action.payload.data];
+                }
             })
             .addCase(signUpUser.fulfilled, (state) => {
                 state.isAuth = true;

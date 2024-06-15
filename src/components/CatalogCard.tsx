@@ -12,8 +12,8 @@ function CatalogCard({ user }: CatalogCardProps) {
     };
 
     return (
-        <div className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4">
-            <img src={avatar} alt="avatar" className="h-32 rounded-full" />
+        <div className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4 w-80">
+            <img src={avatar} alt="avatar" className="h-32 w-32 object-cover rounded-full" />
             <Link
                 to={`/catalog/${id}`}
                 className="text-2xl underline decoration-white duration-300 hover:decoration-black"
