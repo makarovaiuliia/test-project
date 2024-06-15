@@ -14,6 +14,7 @@ export default function DetailedPage() {
     const dispatch = useDispatch();
     const { id } = useParams<{ id: string }>();
     const userList = useSelector(getUserListSelector);
+    console.log(userList);
     const currentUser = userList.find((user) => user.id === parseInt(id!, 10))!;
     const { avatar, first_name, last_name, email } = currentUser;
     const navigate = useNavigate();

@@ -14,13 +14,17 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         const likes = localStorage.getItem('likes');
-        if (likes) {
-            dispatch(setLikes(JSON.parse(likes)));
-        }
-        if (token) {
-            dispatch(setIsAuth(true));
-        }
-        dispatch(getUserList(1));
+
+        const fetchData = async () => {
+            await dispatch(getUserList(1));
+            if (likes) {
+                dispatch(setLikes(JSON.parse(likes)));
+            }
+            if (token) {
+                dispatch(setIsAuth(true));
+            }
+        };
+        fetchData();
     }, [dispatch]);
 
     return (
