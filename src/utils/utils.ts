@@ -5,3 +5,11 @@ export const saveToken = (token: string) => {
 export const removeToken = () => {
     localStorage.removeItem('token');
 };
+
+export const saveLikes = (likes: number[]) => {
+    localStorage.setItem('likes', JSON.stringify(likes));
+};
+
+export const removeLikes = () => {
+    localStorage.removeItem('likes');
+};

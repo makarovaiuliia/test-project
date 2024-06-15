@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 import { SignInData, User } from '@/types/types';
 import { getUserListApi, signInUserApi, signUpUserApi } from '@/utils/projectApi';
-import { saveToken } from '@/utils/utils';
+import { removeLikes, saveLikes, saveToken } from '@/utils/utils';
 
 export const getUserList = createAsyncThunk('users/get', async (page: number) => {
     const response = await getUserListApi(page);
@@ -27,6 +27,7 @@ interface InitialState {
     userList: User[];
     isAuth: boolean;
     total: number;
+    liked: number[];
 }
 
 const initialState: InitialState = {
@@ -34,6 +35,7 @@ const initialState: InitialState = {
     userList: [],
     isAuth: false,
     total: 0,
+    liked: [],
 };
 
 const userSlice = createSlice({
@@ -42,6 +44,20 @@ const userSlice = createSlice({
     reducers: {
         setIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload;
+            if (!action.payload) {
+                removeLikes();
+            }
+        },
+        setLike(state, action: PayloadAction<number>) {
+            state.liked = [...state.liked, action.payload];
+            saveLikes(state.liked);
+        },
+        removeLike(state, action: PayloadAction<number>) {
+            state.liked = state.liked.filter((like) => like !== action.payload);
+            saveLikes(state.liked);
+        },
+        setLikes(state, action: PayloadAction<number[]>) {
+            state.liked = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -66,7 +82,8 @@ const userSlice = createSlice({
 export const getUserSelector = (state: RootState) => state.user.userData;
 export const getUserListSelector = (state: RootState) => state.user.userList;
 export const getIsAuth = (state: RootState) => state.user.isAuth;
+export const getIsLiked = (state: RootState) => state.user.liked;
 
-export const { setIsAuth } = userSlice.actions;
+export const { setIsAuth, setLike, removeLike, setLikes } = userSlice.actions;
 
 export default userSlice.reducer;

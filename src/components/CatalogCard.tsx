@@ -1,14 +1,17 @@
+import { useDispatch, useSelector } from '@/service/store';
+import { getIsLiked, removeLike, setLike } from '@/service/userSlice';
 import { CatalogCardProps } from '@/types/props';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function CatalogCard({ user }: CatalogCardProps) {
     const { first_name, last_name, avatar, id } = user;
+    const dispatch = useDispatch();
 
-    const [isLiked, setIsLiked] = useState(false);
+    const liked = useSelector(getIsLiked);
+    const isLiked = liked.some((like) => like === id);
 
     const handleLikeToggle = () => {
-        setIsLiked((prevIsLiked) => !prevIsLiked);
+        isLiked ? dispatch(removeLike(id)) : dispatch(setLike(id));
     };
 
     return (
