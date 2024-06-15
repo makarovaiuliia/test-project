@@ -1,6 +1,7 @@
 import { FieldError, FieldValues, UseFormRegister, Path } from 'react-hook-form';
+import { User } from './types';
 
-export type FormFieldProps<T extends FieldValues> = {
+export interface FormFieldProps<T extends FieldValues> {
     label: string;
     type: string;
     placeholder: string;
@@ -8,4 +9,8 @@ export type FormFieldProps<T extends FieldValues> = {
     register: UseFormRegister<T>;
     error: FieldError | undefined;
     valueAsNumber?: boolean;
-};
+}
+
+export interface CatalogCardProps {
+    user: User;
+}
