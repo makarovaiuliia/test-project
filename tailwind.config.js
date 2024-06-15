@@ -26,9 +26,11 @@ export default {
                 '2xl': '1.25rem',
                 '3xl': '4rem',
                 '4xl': '0.63rem',
+                '32px': '32px'
             },
             minHight: {
                 '100dvh': '100dvh',
+                '100%': '100%'
             },
             padding: {
                 '300px': '300px',

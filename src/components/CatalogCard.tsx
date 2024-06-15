@@ -12,14 +12,14 @@ function CatalogCard({ user }: CatalogCardProps) {
     };
 
     return (
-        <Link
-            to={`/catalog/${id}`}
-            className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4"
-        >
+        <div className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4">
             <img src={avatar} alt="avatar" className="h-32 rounded-full" />
-            <p className="text-2xl">
+            <Link
+                to={`/catalog/${id}`}
+                className="text-2xl underline decoration-white duration-300 hover:decoration-black"
+            >
                 {first_name} {last_name}
-            </p>
+            </Link>
             <div className="flex justify-end bg-grey-light rounded-md self-end mr-[-60px]">
                 <button
                     onClick={handleLikeToggle}
@@ -40,7 +40,7 @@ function CatalogCard({ user }: CatalogCardProps) {
                     </svg>
                 </button>
             </div>
-        </Link>
+        </div>
     );
 }
 
