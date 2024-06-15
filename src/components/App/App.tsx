@@ -14,7 +14,7 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            dispatch(setIsAuth());
+            dispatch(setIsAuth(true));
         }
         dispatch(getUserList());
     }, [dispatch]);

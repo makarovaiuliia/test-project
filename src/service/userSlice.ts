@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from './store';
 import { SignInData, User } from '@/types/types';
@@ -38,8 +38,8 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setIsAuth(state) {
-            state.isAuth = true;
+        setIsAuth(state, action: PayloadAction<boolean>) {
+            state.isAuth = action.payload;
         },
     },
     extraReducers: (builder) => {

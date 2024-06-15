@@ -1,20 +1,25 @@
-import { useSelector } from '@/service/store';
-import { getUserListSelector } from '@/service/userSlice';
+import { useDispatch, useSelector } from '@/service/store';
+import { getUserListSelector, setIsAuth } from '@/service/userSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import phone from '/phone.svg';
 import mail from '/mail.svg';
 import Contact from '@/components/Contact';
 import HeaderButton from '@/components/HeaderButton';
+import { removeToken } from '@/utils/utils';
 
 export default function DetailedPage() {
+    const dispatch = useDispatch();
     const { id } = useParams<{ id: string }>();
     const userList = useSelector(getUserListSelector);
     const currentUser = userList.find((user) => user.id === parseInt(id!, 10))!;
     const { avatar, first_name, last_name, email } = currentUser;
     const navigate = useNavigate();
 
-    const handleLogOut = () => {};
+    const handleLogOut = () => {
+        dispatch(setIsAuth(false));
+        removeToken();
+    };
 
     return (
         <>
