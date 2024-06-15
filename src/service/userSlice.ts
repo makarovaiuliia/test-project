@@ -27,6 +27,7 @@ interface InitialState {
     userList: User[];
     isAuth: boolean;
     total: number;
+    liked: number[];
 }
 
 const initialState: InitialState = {
@@ -34,6 +35,7 @@ const initialState: InitialState = {
     userList: [],
     isAuth: false,
     total: 0,
+    liked: [],
 };
 
 const userSlice = createSlice({
@@ -42,6 +44,12 @@ const userSlice = createSlice({
     reducers: {
         setIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload;
+        },
+        setLike(state, action: PayloadAction<number>) {
+            state.liked = [...state.liked, action.payload];
+        },
+        removeLike(state, action: PayloadAction<number>) {
+            state.liked = state.liked.filter((like) => like !== action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -66,7 +74,8 @@ const userSlice = createSlice({
 export const getUserSelector = (state: RootState) => state.user.userData;
 export const getUserListSelector = (state: RootState) => state.user.userList;
 export const getIsAuth = (state: RootState) => state.user.isAuth;
+export const getIsLiked = (state: RootState) => state.user.liked;
 
-export const { setIsAuth } = userSlice.actions;
+export const { setIsAuth, setLike, removeLike } = userSlice.actions;
 
 export default userSlice.reducer;
