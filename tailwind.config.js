@@ -6,6 +6,7 @@ export default {
             width: {
                 '500px': '500px',
                 '100dvw': '100dvw',
+                '100%': '100%',
             },
             colors: {
                 violet: '#512689',
@@ -28,6 +29,12 @@ export default {
             },
             minHight: {
                 '100dvh': '100dvh',
+            },
+            padding: {
+                '300px': '300px',
+            },
+            borderWidth: {
+                '1px': '1px',
             },
         },
     },

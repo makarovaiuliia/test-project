@@ -8,7 +8,7 @@ function Catalog() {
     return (
         <div className="grid grid-cols-3 gap-5">
             {userList.map((user) => (
-                <CatalogCard user={user} />
+                <CatalogCard user={user} key={user.id} />
             ))}
         </div>
     );
