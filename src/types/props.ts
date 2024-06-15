@@ -26,4 +26,5 @@ export interface HeaderButtonProps {
     styles?: string;
     title: string;
     handler: () => void;
+    icon: string;
 }

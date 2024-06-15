@@ -5,6 +5,8 @@ import { getUserList, setIsAuth } from '@/service/userSlice';
 import { removeToken } from '@/utils/utils';
 import { useState } from 'react';
 
+import logout from '/logout.svg';
+
 export default function CatalogPage() {
     const dispatch = useDispatch();
 
@@ -26,11 +28,11 @@ export default function CatalogPage() {
 
     return (
         <>
-            <header className="py-16 px-300px bg-violet text-white text-center">
-                <HeaderButton handler={handleLogOut} styles="right-16" title="Выход" />
+            <header className="py-16 lg:px-300px md:px-16 px-4 bg-violet text-white text-center">
+                <HeaderButton handler={handleLogOut} styles="right-16" title="Выход" icon={logout} />
                 <div>
-                    <h1 className="text-3xl">Наша команда</h1>
-                    <p className="text-2xl">
+                    <h1 className="lg:text-3xl text-36px">Наша команда</h1>
+                    <p className="lg:text-2xl text-base">
                         Это опытные специалисты, хорошо разбирающиеся во всех задачах, которые ложатся на их плечи, и
                         умеющие находить выход из любых, даже самых сложных ситуаций.
                     </p>

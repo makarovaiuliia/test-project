@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import phone from '/phone.svg';
 import mail from '/mail.svg';
+import logout from '/logout.svg';
+import back from '/back.svg';
 import Contact from '@/components/Contact';
 import HeaderButton from '@/components/HeaderButton';
 import { removeToken } from '@/utils/utils';
@@ -23,20 +25,20 @@ export default function DetailedPage() {
 
     return (
         <>
-            <header className="py-16 px-48 bg-violet text-white text-center w-100% shadow-md">
-                <HeaderButton handler={() => navigate('/')} styles="left-16" title="Назад" />
-                <HeaderButton handler={handleLogOut} styles="right-16" title="Выход" />
-                <div className="flex gap-6  items-center">
+            <header className="py-16 lg:px-48 md:px-16 px-4 bg-violet text-white text-center w-100% shadow-md">
+                <HeaderButton handler={() => navigate('/')} styles="left-16" title="Назад" icon={back} />
+                <HeaderButton handler={handleLogOut} styles="right-16" title="Выход" icon={logout} />
+                <div className="flex md:flex-row flex-col-reverse gap-6  items-center justify-center md:justify-start">
                     <img src={avatar} alt="avatar" className="h-48 rounded-full" />
-                    <div className="flex flex-col gap-4 items-start">
-                        <h1 className="text-3xl">
+                    <div className="flex flex-col gap-4 md:items-start items-center">
+                        <h1 className="lg:text-3xl text-36px">
                             {first_name} {last_name}
                         </h1>
-                        <p className="text-32px">Партнер</p>
+                        <p className="md:text-32px text-2xl">Партнер</p>
                     </div>
                 </div>
             </header>
-            <main className="px-48 flex gap-40 mt-10">
+            <main className="lg:px-48 md:px-16 px-8 flex md:gap-40 gap-4 mt-10 md:flex-row flex-col-reverse">
                 <div className="grid gap-4">
                     <p>
                         Клиенты видят в нем эксперта по вопросам разработки комплексных решений финансовых продуктов,
