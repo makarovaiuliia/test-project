@@ -1,8 +1,9 @@
 import { CatalogCardProps } from '@/types/props';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function CatalogCard({ user }: CatalogCardProps) {
-    const { first_name, last_name, avatar } = user;
+    const { first_name, last_name, avatar, id } = user;
 
     const [isLiked, setIsLiked] = useState(false);
 
@@ -11,7 +12,10 @@ function CatalogCard({ user }: CatalogCardProps) {
     };
 
     return (
-        <div className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4">
+        <Link
+            to={`/catalog/${id}`}
+            className="px-20 pt-9 pb-5 flex flex-col justify-center items-center rounded-sm shadow-md gap-4"
+        >
             <img src={avatar} alt="avatar" className="h-32 rounded-full" />
             <p className="text-2xl">
                 {first_name} {last_name}
@@ -36,7 +40,7 @@ function CatalogCard({ user }: CatalogCardProps) {
                     </svg>
                 </button>
             </div>
-        </div>
+        </Link>
     );
 }
 
