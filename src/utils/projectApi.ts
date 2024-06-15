@@ -13,8 +13,8 @@ const URL = import.meta.env.VITE_URL;
 const checkResponse = <T>(res: Response): Promise<T> =>
     res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 
-export const getUserListApi = async () => {
-    const response = await fetch(`${URL}/users`, {
+export const getUserListApi = async (page: number) => {
+    const response = await fetch(`${URL}/users?page=${page}`, {
         headers: {
             'Content-Type': 'application/json',
         },

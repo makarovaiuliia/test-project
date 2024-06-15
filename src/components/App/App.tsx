@@ -16,7 +16,7 @@ function App() {
         if (token) {
             dispatch(setIsAuth(true));
         }
-        dispatch(getUserList());
+        dispatch(getUserList(1));
     }, [dispatch]);
 
     return (

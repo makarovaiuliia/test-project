@@ -6,7 +6,7 @@ function Catalog() {
     const userList = useSelector(getUserListSelector);
 
     return (
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-3 gap-5 my-10">
             {userList.map((user) => (
                 <CatalogCard user={user} key={user.id} />
             ))}

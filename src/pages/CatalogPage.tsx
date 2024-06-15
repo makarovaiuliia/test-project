@@ -1,11 +1,23 @@
 import Catalog from '@/components/Catalog';
 import HeaderButton from '@/components/HeaderButton';
-import { useDispatch } from '@/service/store';
-import { setIsAuth } from '@/service/userSlice';
+import { useDispatch, useSelector } from '@/service/store';
+import { getUserList, setIsAuth } from '@/service/userSlice';
 import { removeToken } from '@/utils/utils';
+import { useState } from 'react';
 
 export default function CatalogPage() {
     const dispatch = useDispatch();
+
+    const [page, setPage] = useState<number>(2);
+    const [hasMore, setHasMore] = useState<boolean>(true);
+
+    const total = useSelector((state) => state.user.total);
+
+    const fetchMore = async () => {
+        await dispatch(getUserList(page));
+        setPage((prevState) => prevState + 1);
+        setHasMore(page * 6 > total);
+    };
 
     const handleLogOut = () => {
         dispatch(setIsAuth(false));
@@ -24,8 +36,13 @@ export default function CatalogPage() {
                     </p>
                 </div>
             </header>
-            <main className="mt-10">
+            <main className="grid items-center justify-items-center">
                 <Catalog />
+                {hasMore && (
+                    <button onClick={fetchMore} className="py-2 px-4 border-1px rounded-lg hover:opacity-80 w-max">
+                        Показать еще
+                    </button>
+                )}
             </main>
         </>
     );
