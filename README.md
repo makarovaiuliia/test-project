@@ -2,10 +2,6 @@
 
 Here you can surf [deploy](https://test-antipoff.netlify.app/)
 
-## Project Overview
-
-Kickflip is an e-commerce platform focused on sneakers, allowing users to browse, select, and purchase from a wide variety of sneakers. Designed with usability and performance in mind, Kickflip aims to provide sneaker enthusiasts with a seamless shopping experience.
-
 ## Technology Stack
 
 - **Frontend**: React + TypeScript
